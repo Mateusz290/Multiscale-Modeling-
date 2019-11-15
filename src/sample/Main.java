@@ -6,9 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import sample.model.Grain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Main extends Application {
@@ -16,7 +19,9 @@ public class Main extends Application {
     private static Grain grains[][];
     private Stage stage;
     private Controller controller;
-    private static int size = (int) 1.0 * 700 / 500;
+    private static Random random = new Random();
+    private static int size;
+    private static List<Paint> usedColors = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -26,25 +31,22 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-//        AnchorPane root = createSimpleImage();
-
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
 
-    public static AnchorPane createSimpleImage() {
+    public static AnchorPane createSimpleImage(int count) {
 
-        Random r = new Random(255);
+        size = (int) 1.0 * 700 / count;
+
         AnchorPane root = new AnchorPane();
 
 
-        grains = new Grain[500][500];
-        for (int i=0; i<500; i++) {
-            for (int j=0; j<500; j++) {
-                grains[i][j] = new Grain(r.nextInt(255), r.nextInt(255), Color.rgb(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
+        grains = new Grain[count][count];
+        for (int i=0; i<count; i++) {
+            for (int j=0; j<count; j++) {
                 AnchorPane anchorPane = colorPixels(i,j);
                 root.getChildren().add(anchorPane);
-
             }
         }
 
@@ -54,6 +56,8 @@ public class Main extends Application {
 
     public static AnchorPane colorPixels(int i, int j) {
 
+        grains[i][j] = new Grain(Color.GRAY);
+
         AnchorPane anchorPane = grains[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
         anchorPane.setMaxSize(size,size);
@@ -62,6 +66,92 @@ public class Main extends Application {
         AnchorPane.setLeftAnchor(anchorPane, i*size*1.0);
 
         return anchorPane;
+
+    }
+
+    public static AnchorPane colorPixelsAfterChange(int i, int j) {
+        AnchorPane anchorPane = grains[i][j].createGrainImage();
+        anchorPane.setPrefSize(size,size);
+        anchorPane.setMaxSize(size,size);
+
+        AnchorPane.setTopAnchor(anchorPane, j*size*1.0);
+        AnchorPane.setLeftAnchor(anchorPane, i*size*1.0);
+
+        return anchorPane;
+    }
+
+    public static boolean isPlace(int count) {
+        for (int i=0; i<count; i++) {
+            for (int j=0; j<count; j++) {
+                if (grains[i][j].isGrainColor())
+                    return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static Paint paintGrain() {
+
+        boolean state = false;
+
+        Color color = null;
+
+        while(!state) {
+            float a = random.nextFloat();
+            float b = random.nextFloat();
+            float c = random.nextFloat();
+
+            color = new Color(a,b,c, 1.0);
+
+            if (color == Color.GRAY)
+                state = false;
+            else if (usedColors.isEmpty())
+                state = true;
+            else {
+                boolean isused = false;
+                for (Paint paint: usedColors) {
+                    if (color == paint)
+                        isused = true;
+                }
+                if (!isused)
+                    state = true;
+            }
+
+
+        }
+        usedColors.add(color);
+        return color;
+    }
+
+    public static List<Paint> checkColor(int count) {
+        List<Paint> colors = new ArrayList<>();
+
+        for (int i=0; i<count; i++) {
+            for (int j=0; j<count; j++) {
+
+                if (!colors.contains(grains[i][j].getColor()))
+                    colors.add(grains[i][j].getColor());
+            }
+        }
+        return colors;
+    }
+
+
+    public static void changeGrainColor(int count,int iterator) {
+
+        int i,j;
+
+        while(iterator>0) {
+            i = random.nextInt(count);
+            j = random.nextInt(count);
+            if (grains[i][j].isGrainColor()) {
+                System.out.println("Zmieniam Kolor");
+                grains[i][j].changeGrainColor(paintGrain());
+            }
+
+            iterator--;
+        }
 
     }
 
