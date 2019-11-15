@@ -48,11 +48,15 @@ public class Grain {
         this.color = color;
     }
 
-    public AnchorPane createPixel() {
+    public AnchorPane createGrainImage() {
         AnchorPane anchorPane =new AnchorPane();
         anchorPane.setBackground(new Background(new BackgroundFill(this.color, CornerRadii.EMPTY, Insets.EMPTY)));
 
         return anchorPane;
+    }
+
+    public void changeGrainColor(Paint color) {
+        this.color = color;
     }
 
 }
