@@ -27,11 +27,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         stage = primaryStage;
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Multiscale Modeling");
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 900, 800));
         primaryStage.show();
     }
 
@@ -56,7 +56,8 @@ public class Main extends Application {
 
     public static AnchorPane colorPixels(int i, int j) {
 
-        grains[i][j] = new Grain(Color.GRAY);
+
+        grains[i][j] = new Grain(Color.GRAY, random.nextInt());
 
         AnchorPane anchorPane = grains[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
@@ -146,12 +147,49 @@ public class Main extends Application {
             i = random.nextInt(count);
             j = random.nextInt(count);
             if (grains[i][j].isGrainColor()) {
-                System.out.println("Zmieniam Kolor");
                 grains[i][j].changeGrainColor(paintGrain());
             }
 
             iterator--;
         }
+
+    }
+
+
+    public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary) {
+
+        switch (neighbourhood) {
+            case "VonNeumann":
+                System.out.println("MetodaVonNeumann");
+                Algorithm2.vonNeuman(grains,count,boundary);
+                break;
+            case  "Moorea":
+                System.out.println("MetodaMoorea");
+                Algorithm2.Moorea(grains,count,boundary);
+                break;
+            case "HexagonalRight":
+                System.out.println("MetodaHexagonalRight");
+                Algorithm2.HexagonalRight(grains,count,boundary);
+                break;
+            case "HexagonalLeft":
+                System.out.println("MetodaHexagonalLeft");
+                Algorithm2.HexagonalLeft(grains,count,boundary);
+                break;
+            case "HexagonalRandom":
+                break;
+            case "PentagonalLeft":
+                System.out.println("MetodaPentagonalLeft");
+                Algorithm2.PentagonalLeft(grains,count,boundary);
+                break;
+            case "PentagonalRight":
+                System.out.println("MetodaPentagonalRight");
+                Algorithm2.PentagonalRight(grains,count,boundary);
+                break;
+            case "PentagonalRandom":
+                    break;
+
+        }
+
 
     }
 

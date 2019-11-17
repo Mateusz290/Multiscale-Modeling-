@@ -11,13 +11,22 @@ import javafx.scene.paint.Paint;
 public class Grain {
 
     private Paint color;
+    private int grainId;
 
-    public Grain() {
+    public int getGrainId() {
+        return grainId;
     }
 
-    public Grain(Paint color) {
+    public void setGrainId(int grainId) {
+        this.grainId = grainId;
+    }
 
+    public Grain(Paint color, int grainId) {
         this.color = color;
+        this.grainId = grainId;
+    }
+
+    public Grain() {
     }
 
 
