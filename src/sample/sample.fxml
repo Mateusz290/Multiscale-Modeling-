@@ -7,24 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="407.0" prefWidth="744.0" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" prefHeight="710.0" prefWidth="744.0" vbarPolicy="NEVER">
             <content>
                 <AnchorPane fx:id="output" minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="352.0" />
             </content>
         </ScrollPane>
-        <TextField layoutX="13.0" layoutY="425.0" prefHeight="25.0" prefWidth="204.0" text="Neighbourhood" />
-        <Button fx:id="button" layoutX="551.0" layoutY="419.0" mnemonicParsing="false" onAction="#createImage" prefHeight="37.0" prefWidth="169.0" text="Create Basic dimension" />
-        <Button layoutX="551.0" layoutY="505.0" mnemonicParsing="false" onAction="#painGrains" prefHeight="25.0" prefWidth="169.0" text="Random colorate" />
-        <TextField fx:id="grainCount" layoutX="561.0" layoutY="571.0" prefHeight="25.0" prefWidth="159.0" promptText="Number of grains" />
-        <TextField layoutX="266.0" layoutY="425.0" prefHeight="25.0" prefWidth="188.0" text="Boundary Condition" />
-        <Button layoutX="25.0" layoutY="643.0" mnemonicParsing="false" onAction="#saveImage" prefHeight="79.0" prefWidth="204.0" text="Save image" />
+        <TextField layoutX="825.0" layoutY="95.0" prefHeight="25.0" prefWidth="204.0" text="Neighbourhood" />
+        <Button fx:id="button" layoutX="825.0" layoutY="32.0" mnemonicParsing="false" onAction="#createImage" prefHeight="37.0" prefWidth="169.0" text="Create Basic dimension" />
+        <Button layoutX="855.0" layoutY="362.0" mnemonicParsing="false" onAction="#painGrains" prefHeight="25.0" prefWidth="169.0" text="Random colorate" />
+        <TextField fx:id="grainCount" layoutX="870.0" layoutY="421.0" prefHeight="25.0" prefWidth="159.0" promptText="Number of grains" />
+        <TextField layoutX="825.0" layoutY="204.0" prefHeight="25.0" prefWidth="188.0" text="Boundary Condition" />
+        <Button layoutX="838.0" layoutY="475.0" mnemonicParsing="false" onAction="#saveImage" prefHeight="79.0" prefWidth="204.0" text="Save image" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <TextField fx:id="textField" layoutX="267.0" layoutY="669.0" prefHeight="25.0" prefWidth="188.0" promptText="Size of square matrix" />
-      <Button fx:id="algorithm" layoutX="493.0" layoutY="642.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
-      <ComboBox fx:id="comboBox" layoutX="13.0" layoutY="505.0" prefHeight="25.0" prefWidth="204.0" />
-      <ComboBox fx:id="comboBox2" layoutX="267.0" layoutY="505.0" prefHeight="25.0" prefWidth="188.0" />
-      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Reset" />
+      <TextField fx:id="textField" layoutX="874.0" layoutY="595.0" prefHeight="25.0" prefWidth="188.0" promptText="Size of square matrix" />
+      <Button fx:id="algorithm" layoutX="836.0" layoutY="669.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
+      <ComboBox fx:id="comboBox" layoutX="825.0" layoutY="140.0" prefHeight="25.0" prefWidth="204.0" />
+      <ComboBox fx:id="comboBox2" layoutX="825.0" layoutY="261.0" prefHeight="25.0" prefWidth="188.0" />
+      <Button layoutX="968.0" layoutY="311.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Reset" />
     </children>
 </AnchorPane>

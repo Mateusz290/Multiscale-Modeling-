@@ -84,7 +84,7 @@ public class Main extends Application {
     public static boolean isPlace(int count) {
         for (int i=0; i<count; i++) {
             for (int j=0; j<count; j++) {
-                if (grains[i][j].isGrainColor())
+                if (grains[i][j].isEmptyColorState())
                     return true;
             }
         }
@@ -146,22 +146,31 @@ public class Main extends Application {
         while(iterator>0) {
             i = random.nextInt(count);
             j = random.nextInt(count);
-            if (grains[i][j].isGrainColor()) {
+            if (grains[i][j].isEmptyColorState()) {
                 grains[i][j].changeGrainColor(paintGrain());
             }
 
             iterator--;
         }
 
+        System.out.println("Kolory po zmianie kolorow");
+
+        for (int k=0;k<count; k++){
+            for (int l=0;l<count; l++) {
+                System.out.print(grains[k][l].getColor() + " ");
+            }
+            System.out.println();
+        }
+
     }
 
 
-    public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary) {
+    public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary, AnchorPane output) throws InterruptedException {
 
         switch (neighbourhood) {
             case "VonNeumann":
                 System.out.println("MetodaVonNeumann");
-                Algorithm2.vonNeuman(grains,count,boundary);
+                Algorithm2.vonNeuman(grains,count,boundary, output);
                 break;
             case  "Moorea":
                 System.out.println("MetodaMoorea");
