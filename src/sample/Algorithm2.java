@@ -16,43 +16,33 @@ public class Algorithm2 {
     public static void vonNeuman(Grain grains[][], int count,String boundary, AnchorPane output) throws InterruptedException {
 
         Paint color = null;
-        int grainId = -1;
-
-
-        System.out.println("Kolory przed implementacja algorytmu");
-        for (int i=0;i<count; i++){
-            for (int j=0;j<count; j++) {
-                System.out.print(grains[i][j].getColor() + " ");
-            }
-            System.out.println();
-            }
+        int grainId;
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
                 color = Color.GRAY;
-                System.out.println("Pozycja [" + i + "][" + j + "]");
+                grainId = -1;
                 if (!grains[i][j].isEmptyColorState()) {
-                            System.out.println("Opuszczam");
+                    System.out.println("Opuszczam");
                     continue;
 
                 }
-                else {   // i = 1   j = 1   grains[1][1]    grains[0][1]  górny      grains[1][0]   lewy   grains[1][2]  prawy    rains[2][1 dolny]
-                    if (!grains[i-1][j].isEmptyColorState()) {
+                else {
+                    if (!grains[i-1][j].isEmptyColorState() && grains[i-1][j].getGrainId() > grainId) {
                         color = grains[i-1][j].getColor();
-
-                        System.out.println("Górny kwadrat ma kolor " + color);
+                        grainId = grains[i-1][j].getGrainId();
                     }
-                    if (!grains[i][j - 1].isEmptyColorState()) {
+                    if (!grains[i][j - 1].isEmptyColorState() && grains[i][j - 1].getGrainId() > grainId) {
                         color = grains[i][j-1].getColor();
-                        System.out.println("Lewy kwadrat ma kolor " + color);
+                        grainId = grains[i][j-1].getGrainId();
                     }
-                    if (!grains[i][j+1].isEmptyColorState()) {
+                    if (!grains[i][j+1].isEmptyColorState()  && grains[i][j - 1].getGrainId() > grainId) {
                         color = grains[i][j+1].getColor();
-                        System.out.println("Prawy kwadrat ma kolor " + color);
+                        grainId = grains[i][j+1].getGrainId();
                     }
-                    if (!grains[i+1][j].isEmptyColorState()) {
+                    if (!grains[i+1][j].isEmptyColorState()  && grains[i][j - 1].getGrainId() > grainId) {
                         color = grains[i+1][j].getColor();
-                        System.out.println("Dolny kwadrat ma kolor " + color);
+                        grainId = grains[i+1][j].getGrainId();
                     }
 
                     if (color != Color.GRAY) {
@@ -60,19 +50,19 @@ public class Algorithm2 {
 
                         grains[i][j].changeGrainColor(color);
                         System.out.println("Zmieniam kolor środkowego kwadratu na " + color);
-                        if (grains[i][j - 1].isEmptyColorState()) {
+                        if (grains[i][j - 1].isEmptyColorState() || grains[i][j - 1].getGrainId() <grainId) {
                             System.out.println("Zmieniam kolor górnego kwadratu na " + color);
                             grains[i][j - 1].changeGrainColor(color);
                         }
-                        if (grains[i - 1][j].isEmptyColorState()) {
+                        if (grains[i - 1][j].isEmptyColorState() || grains[i-1][j].getGrainId() <grainId) {
                             System.out.println("Zmieniam kolor lewego kwadratu na " + color);
                             grains[i - 1][j].changeGrainColor(color);
                         }
-                        if (grains[i + 1][j].isEmptyColorState()) {
+                        if (grains[i + 1][j].isEmptyColorState()  || grains[i+1][j].getGrainId() <grainId) {
                             System.out.println("Zmieniam kolor prawego kwadratu na " + color);
                             grains[i + 1][j].changeGrainColor(color);
                         }
-                        if (grains[i][j + 1].isEmptyColorState()) {
+                        if (grains[i][j + 1].isEmptyColorState()  || grains[i][j+1].getGrainId() <grainId) {
                             System.out.println("Zmieniam kolor dolnego kwadratu na " + color);
                             grains[i][j + 1].changeGrainColor(color);
                         }
@@ -89,16 +79,6 @@ public class Algorithm2 {
 //                output.getChildren().add(Main.colorPixelsAfterChange(i, j));
             }
         }
-
-        System.out.println("Kolory po zastosowaniu algorytmu");
-        for (int k=0;k<count; k++){
-            for (int l=0;l<count; l++) {
-                System.out.print(grains[k][l].getColor() + " ");
-            }
-            System.out.println();
-        }
-
-
 
     }
 

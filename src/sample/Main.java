@@ -50,15 +50,6 @@ public class Main extends Application {
             }
         }
 
-        System.out.println("Kolory Grain po inicjalizacji");
-
-        for (int i=0; i<count; i++) {
-            for (int j=0; j<count; j++) {
-                System.out.print(grains[i][j].getColor() + " ");
-            }
-            System.out.println();
-        }
-
         return root;
 
     }
@@ -161,33 +152,15 @@ public class Main extends Application {
             j = random.nextInt(count);
             if (grains[i][j].isEmptyColorState()) {
                 grains[i][j].changeGrainColor(paintGrain());
-                System.out.println("Zmiana koloru na pozycji ["  +i + "][" + j  +"]");
             }
 
             iterator--;
-        }
-
-        System.out.println("Kolory po zmianie kolorow");
-
-        for (int k=0;k<count; k++){
-            for (int l=0;l<count; l++) {
-                System.out.print(grains[k][l].getColor() + " ");
-            }
-            System.out.println();
         }
 
     }
 
 
     public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary, AnchorPane output) throws InterruptedException {
-
-        System.out.println("Kolory przed zastosowaniem algorytmu");
-        for (int k=0;k<count; k++){
-            for (int l=0;l<count; l++) {
-                System.out.print(grains[k][l].getColor() + " ");
-            }
-            System.out.println();
-        }
 
         switch (neighbourhood) {
             case "VonNeumann":
@@ -220,15 +193,6 @@ public class Main extends Application {
                     break;
 
         }
-
-        System.out.println("Kolory po zastosowaniem algorytmu");
-        for (int k=0;k<count; k++){
-            for (int l=0;l<count; l++) {
-                System.out.print(grains[k][l].getColor() + " ");
-            }
-            System.out.println();
-        }
-
 
     }
 
