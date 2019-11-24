@@ -17,6 +17,7 @@ import java.util.Random;
 public class Main extends Application {
 
     private static Grain grains[][];
+    private static Grain temp[][];
     private Stage stage;
     private Controller controller;
     private static Random random = new Random();
@@ -43,6 +44,7 @@ public class Main extends Application {
 
 
         grains = new Grain[count][count];
+        temp = new Grain[count][count];
         for (int i=0; i<count; i++) {
             for (int j=0; j<count; j++) {
                 AnchorPane anchorPane = colorPixels(i,j);
@@ -57,7 +59,7 @@ public class Main extends Application {
     public static AnchorPane colorPixels(int i, int j) {
 
 
-        grains[i][j] = new Grain(Color.GRAY, random.nextInt());
+        grains[i][j] = new Grain(Color.GRAY, 0);
 
         AnchorPane anchorPane = grains[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
@@ -72,6 +74,17 @@ public class Main extends Application {
 
     public static AnchorPane colorPixelsAfterChange(int i, int j) {
         AnchorPane anchorPane = grains[i][j].createGrainImage();
+        anchorPane.setPrefSize(size,size);
+        anchorPane.setMaxSize(size,size);
+
+        AnchorPane.setTopAnchor(anchorPane, j*size*1.0);
+        AnchorPane.setLeftAnchor(anchorPane, i*size*1.0);
+
+        return anchorPane;
+    }
+
+    public static AnchorPane colorPixelsAfterReverse(int i, int j) {
+        AnchorPane anchorPane = temp[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
         anchorPane.setMaxSize(size,size);
 
@@ -141,19 +154,32 @@ public class Main extends Application {
 
     public static void changeGrainColor(int count,int iterator) {
 
-        int i,j;
-
+        int i,j, k, iterator1;
+        iterator1 = iterator;
+        List<Integer> numbers = new ArrayList<>();
         while(iterator>0) {
             i = random.nextInt(count);
             j = random.nextInt(count);
+
+            do{
+                k = random.nextInt(count) % iterator1;
+            System.out.println("wylosowana liczba" + k);
+            } while (numbers.contains(k));
+            System.out.println("Dodanie do arraylisty");
+            numbers.add(k);
             if (grains[i][j].isGrainColor()) {
+                System.out.println("Ustawiam[" +i + "][" + j+ "]"+  " grainId na" + k);
+                grains[i][j].setGrainId(k);
                 grains[i][j].changeGrainColor(paintGrain());
             }
 
             iterator--;
         }
+        temp = grains;
 
     }
+
+
 
 
     public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary) {

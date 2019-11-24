@@ -18,13 +18,13 @@
         <Button fx:id="button" layoutX="551.0" layoutY="419.0" mnemonicParsing="false" onAction="#createImage" prefHeight="37.0" prefWidth="169.0" text="Create Basic dimension" />
         <Button layoutX="551.0" layoutY="505.0" mnemonicParsing="false" onAction="#painGrains" prefHeight="25.0" prefWidth="169.0" text="Random colorate" />
         <TextField fx:id="grainCount" layoutX="561.0" layoutY="571.0" prefHeight="25.0" prefWidth="159.0" promptText="Number of grains" />
-        <TextField layoutX="266.0" layoutY="425.0" prefHeight="25.0" prefWidth="188.0" text="Boundary Conditions" />
+        <TextField layoutX="266.0" layoutY="425.0" prefHeight="25.0" prefWidth="188.0" text="Boundary Condition" />
         <Button layoutX="25.0" layoutY="643.0" mnemonicParsing="false" onAction="#saveImage" prefHeight="79.0" prefWidth="204.0" text="Save image" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
       <TextField fx:id="textField" layoutX="267.0" layoutY="669.0" prefHeight="25.0" prefWidth="188.0" promptText="Size of square matrix" />
       <Button fx:id="algorithm" layoutX="493.0" layoutY="642.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
       <ComboBox fx:id="comboBox" layoutX="13.0" layoutY="505.0" prefHeight="25.0" prefWidth="204.0" />
       <ComboBox fx:id="comboBox2" layoutX="267.0" layoutY="505.0" prefHeight="25.0" prefWidth="188.0" />
-      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Reset" />
+      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" onAction="#reverseAction" prefHeight="25.0" prefWidth="53.0" text="Reset" />
     </children>
 </AnchorPane>

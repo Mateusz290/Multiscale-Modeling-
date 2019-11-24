@@ -25,6 +25,6 @@
       <Button fx:id="algorithm" layoutX="493.0" layoutY="642.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
       <ComboBox fx:id="comboBox" layoutX="13.0" layoutY="505.0" prefHeight="25.0" prefWidth="204.0" />
       <ComboBox fx:id="comboBox2" layoutX="267.0" layoutY="505.0" prefHeight="25.0" prefWidth="188.0" />
-      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Reset" />
+      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" onAction="#reverseAction" prefHeight="25.0" prefWidth="53.0" text="Reset" />
     </children>
 </AnchorPane>

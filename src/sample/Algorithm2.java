@@ -16,24 +16,31 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                System.out.println("Pozycja [" + i + "][" + j + " ]");
+                grainId = -1;
+                System.out.println("Pozycja [" + i + "][" + j + " ]" + " - granID = " + grains[i][j].getGrainId());
                 if (!grains[i][j].isGrainColor()) {
                             System.out.println("Opuszczam");
                     continue;
 
                 }
                 else {
-                    if (!grains[i][j + 1].isGrainColor()) {
+                    if (!grains[i][j + 1].isGrainColor() && grains[i][j + 1].getGrainId() > grainId ) {
                         color = grains[i][j + 1].getColor();
+                        grainId = grains[i][j + 1].getGrainId();
                     }
-                    if (!grains[i - 1][j].isGrainColor()) {
+                    if (!grains[i - 1][j].isGrainColor() && grains[i - 1][j].getGrainId() > grainId) {
                         color = grains[i - 1][j].getColor();
-                    }
-                    if (!grains[i + 1][j].isGrainColor()) {
+                        grainId = grains[i-1][j].getGrainId();
+                     }
+                     if (!grains[i + 1][j].isGrainColor() && grains[i + 1][j].getGrainId() > grainId) {
                         color = grains[i + 1][j].getColor();
-                    }
-                    if (!grains[i][j - 1].isGrainColor()) {
+                        grainId = grains[i+1][j].getGrainId();
+
+                     }
+                    if (!grains[i][j - 1].isGrainColor() && grains[i][j-1].getGrainId() > grainId) {
                         color = grains[i][j - 1].getColor();
+                        grainId = grains[i][j-1].getGrainId();
+
                     }
 
 

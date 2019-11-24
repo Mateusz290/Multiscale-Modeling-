@@ -77,7 +77,7 @@ public class Controller {
 
             for (int i=0;i<count; i++) {
                 for (int j=0; j<count; j++) {
-                    output.getChildren().add(colorPixelsAfterChange(i, j));
+                    output.getChildren().add(Main.colorPixelsAfterChange(i, j));
                 }
             }
 
@@ -86,6 +86,18 @@ public class Controller {
         } catch (NumberFormatException exc) {
             System.out.println("Blad przy"  + textField.getText());
         }
+
+    }
+
+    public void reverseAction() {
+        output.getChildren().clear();
+
+        for (int i=0;i<50; i++) {
+            for (int j=0; j<50; j++) {
+                output.getChildren().add(Main.colorPixelsAfterReverse(i, j));
+            }
+        }
+
 
     }
 
