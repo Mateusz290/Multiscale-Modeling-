@@ -1,11 +1,17 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 import sample.model.Grain;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class Algorithm2 {
 
@@ -81,6 +87,56 @@ public class Algorithm2 {
         }
 
     }
+
+
+    public void generateInclusions(int inclusionsNumber, int minRadius, int maxRadius) {   // radius = 1-7       min - max stałe = 0.1
+
+        Circle circle;
+        Random random = new Random();
+        AnchorPane a,b;
+
+        int radiusSize;
+
+        int i = random.nextInt(x*x);
+        int widthCircle = random.nextInt(x);
+        int heightCircle =  random.nextInt(x);
+
+        a = (AnchorPane) controller.output.getChildren().get(0);
+
+        while(inclusionsNumber>0) {
+            i = random.nextInt(x*x);
+            radiusSize = minRadius + random.nextInt(maxRadius - minRadius + 1);
+            b = (AnchorPane) a.getChildren().get(i);
+            circle = new Circle(0.1, 0.1, radiusSize);
+            circle.setFill(Color.BLACK);
+            b.getChildren().add(circle);
+            inclusionsNumber--;
+        }
+    }
+
+    public void algorithmCurvatureStill(int propabilities) {
+
+
+
+        timeline = new Timeline(
+                new KeyFrame(Duration.millis(1000),
+                        (evt) -> {
+                            algorithmCurvature(propabilities);
+                            controller.output.getChildren().clear();
+                            controller.output.getChildren().add(this.generate());
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        })
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+
+    }
+
 
     public static void Moorea(Grain grains[][],int count,String boundary) {
 
