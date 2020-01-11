@@ -59,7 +59,11 @@ public class Main extends Application {
     public static AnchorPane colorPixels(int i, int j) {
 
 
+<<<<<<< HEAD
         grains[i][j] = new Grain(Color.GRAY, 0);
+=======
+        grains[i][j] = new Grain(Color.GRAY, random.nextInt(255));
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
 
         AnchorPane anchorPane = grains[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
@@ -73,12 +77,16 @@ public class Main extends Application {
     }
 
     public static AnchorPane colorPixelsAfterChange(int i, int j) {
+
+
+
+
         AnchorPane anchorPane = grains[i][j].createGrainImage();
         anchorPane.setPrefSize(size,size);
         anchorPane.setMaxSize(size,size);
 
-        AnchorPane.setTopAnchor(anchorPane, j*size*1.0);
-        AnchorPane.setLeftAnchor(anchorPane, i*size*1.0);
+        AnchorPane.setTopAnchor(anchorPane, i*size*1.0);
+        AnchorPane.setLeftAnchor(anchorPane, j*size*1.0);
 
         return anchorPane;
     }
@@ -97,7 +105,7 @@ public class Main extends Application {
     public static boolean isPlace(int count) {
         for (int i=0; i<count; i++) {
             for (int j=0; j<count; j++) {
-                if (grains[i][j].isGrainColor())
+                if (grains[i][j].isEmptyColorState())
                     return true;
             }
         }
@@ -160,6 +168,7 @@ public class Main extends Application {
         while(iterator>0) {
             i = random.nextInt(count);
             j = random.nextInt(count);
+<<<<<<< HEAD
 
             do{
                 k = random.nextInt(count) % iterator1;
@@ -170,6 +179,9 @@ public class Main extends Application {
             if (grains[i][j].isGrainColor()) {
                 System.out.println("Ustawiam[" +i + "][" + j+ "]"+  " grainId na" + k);
                 grains[i][j].setGrainId(k);
+=======
+            if (grains[i][j].isEmptyColorState()) {
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                 grains[i][j].changeGrainColor(paintGrain());
             }
 
@@ -180,14 +192,18 @@ public class Main extends Application {
     }
 
 
+<<<<<<< HEAD
 
 
     public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary) {
+=======
+    public static void changeGrainColorByAlgorithm(String neighbourhood,int count, String boundary, AnchorPane output) throws InterruptedException {
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
 
         switch (neighbourhood) {
             case "VonNeumann":
                 System.out.println("MetodaVonNeumann");
-                Algorithm2.vonNeuman(grains,count,boundary);
+                Algorithm2.vonNeuman(grains,count,boundary, output);
                 break;
             case  "Moorea":
                 System.out.println("MetodaMoorea");
@@ -215,7 +231,6 @@ public class Main extends Application {
                     break;
 
         }
-
 
     }
 

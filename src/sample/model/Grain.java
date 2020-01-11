@@ -45,7 +45,7 @@ public class Grain {
         return anchorPane;
     }
 
-    public boolean isGrainColor() {
+    public boolean isEmptyColorState() {
         if (this.getColor() == Color.GRAY)
             return true;
         else return false;

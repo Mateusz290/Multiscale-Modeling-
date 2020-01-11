@@ -1,7 +1,11 @@
 package sample;
 
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import sample.model.Grain;
+
+import java.io.IOException;
 
 public class Algorithm2 {
 
@@ -9,21 +13,29 @@ public class Algorithm2 {
 
 
 
-    public static void vonNeuman(Grain grains[][], int count,String boundary) {
+    public static void vonNeuman(Grain grains[][], int count,String boundary, AnchorPane output) throws InterruptedException {
 
         Paint color = null;
         int grainId;
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
+<<<<<<< HEAD
                 grainId = -1;
                 System.out.println("Pozycja [" + i + "][" + j + " ]" + " - granID = " + grains[i][j].getGrainId());
                 if (!grains[i][j].isGrainColor()) {
                             System.out.println("Opuszczam");
+=======
+                color = Color.GRAY;
+                grainId = -1;
+                if (!grains[i][j].isEmptyColorState()) {
+                    System.out.println("Opuszczam");
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                     continue;
 
                 }
                 else {
+<<<<<<< HEAD
                     if (!grains[i][j + 1].isGrainColor() && grains[i][j + 1].getGrainId() > grainId ) {
                         color = grains[i][j + 1].getColor();
                         grainId = grains[i][j + 1].getGrainId();
@@ -41,17 +53,57 @@ public class Algorithm2 {
                         color = grains[i][j - 1].getColor();
                         grainId = grains[i][j-1].getGrainId();
 
+=======
+                    if (!grains[i-1][j].isEmptyColorState() && grains[i-1][j].getGrainId() > grainId) {
+                        color = grains[i-1][j].getColor();
+                        grainId = grains[i-1][j].getGrainId();
+                    }
+                    if (!grains[i][j - 1].isEmptyColorState() && grains[i][j - 1].getGrainId() > grainId) {
+                        color = grains[i][j-1].getColor();
+                        grainId = grains[i][j-1].getGrainId();
+                    }
+                    if (!grains[i][j+1].isEmptyColorState()  && grains[i][j - 1].getGrainId() > grainId) {
+                        color = grains[i][j+1].getColor();
+                        grainId = grains[i][j+1].getGrainId();
+                    }
+                    if (!grains[i+1][j].isEmptyColorState()  && grains[i][j - 1].getGrainId() > grainId) {
+                        color = grains[i+1][j].getColor();
+                        grainId = grains[i+1][j].getGrainId();
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                     }
 
+                    if (color != Color.GRAY) {
+                        System.out.println("Kolor bedzie zmieniony");
 
-                    grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i - 1][j].isGrainColor()) grains[i - 1][j].changeGrainColor(color);
-                    if (grains[i + 1][j].isGrainColor()) grains[i + 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
+                        grains[i][j].changeGrainColor(color);
+                        System.out.println("Zmieniam kolor środkowego kwadratu na " + color);
+                        if (grains[i][j - 1].isEmptyColorState() || grains[i][j - 1].getGrainId() <grainId) {
+                            System.out.println("Zmieniam kolor górnego kwadratu na " + color);
+                            grains[i][j - 1].changeGrainColor(color);
+                        }
+                        if (grains[i - 1][j].isEmptyColorState() || grains[i-1][j].getGrainId() <grainId) {
+                            System.out.println("Zmieniam kolor lewego kwadratu na " + color);
+                            grains[i - 1][j].changeGrainColor(color);
+                        }
+                        if (grains[i + 1][j].isEmptyColorState()  || grains[i+1][j].getGrainId() <grainId) {
+                            System.out.println("Zmieniam kolor prawego kwadratu na " + color);
+                            grains[i + 1][j].changeGrainColor(color);
+                        }
+                        if (grains[i][j + 1].isEmptyColorState()  || grains[i][j+1].getGrainId() <grainId) {
+                            System.out.println("Zmieniam kolor dolnego kwadratu na " + color);
+                            grains[i][j + 1].changeGrainColor(color);
+                        }
+                    }
+                    else {
+                        System.out.println("Brak zmiany koloru");
+
+                    }
+
+//                    output.getChildren().clear();
+//                    output.getChildren().add(Main.colorPixelsAfterChange(i, j));
 
                 }
-
+//                output.getChildren().add(Main.colorPixelsAfterChange(i, j));
             }
         }
 
@@ -63,39 +115,39 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                if (!grains[i][j].isGrainColor()) {
+                if (!grains[i][j].isEmptyColorState()) {
 
                     continue;
 
                 }
                 else {
-                    if (!grains[i-1][j+1].isGrainColor())
+                    if (!grains[i-1][j+1].isEmptyColorState())
                         color = grains[i-1][j + 1].getColor();
-                    else if (!grains[i+1][j + 1].isGrainColor())
+                    else if (!grains[i+1][j + 1].isEmptyColorState())
                         color = grains[i+1][j + 1].getColor();
-                    else if (!grains[i-1][j - 1].isGrainColor())
+                    else if (!grains[i-1][j - 1].isEmptyColorState())
                         color = grains[i-1][j - 1].getColor();
-                    else if (!grains[i+1][j - 1].isGrainColor())
+                    else if (!grains[i+1][j - 1].isEmptyColorState())
                         color = grains[i+1][j - 1].getColor();
-                    else if (!grains[i][j + 1].isGrainColor())
+                    else if (!grains[i][j + 1].isEmptyColorState())
                         color = grains[i][j + 1].getColor();
-                    else if (!grains[i - 1][j].isGrainColor())
+                    else if (!grains[i - 1][j].isEmptyColorState())
                         color = grains[i - 1][j].getColor();
-                    else if (!grains[i + 1][j].isGrainColor())
+                    else if (!grains[i + 1][j].isEmptyColorState())
                         color = grains[i + 1][j].getColor();
-                    else if (!grains[i][j - 1].isGrainColor())
+                    else if (!grains[i][j - 1].isEmptyColorState())
                         color = grains[i][j - 1].getColor();
 
 
                     grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i - 1][j].isGrainColor()) grains[i - 1][j].changeGrainColor(color);
-                    if (grains[i + 1][j].isGrainColor()) grains[i + 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
-                    if (grains[i-1][j + 1].isGrainColor()) grains[i-1][j + 1].changeGrainColor(color);
-                    if (grains[i+1][j + 1].isGrainColor()) grains[i+1][j + 1].changeGrainColor(color);
-                    if (grains[i-1][j - 1].isGrainColor()) grains[i-1][j - 1].changeGrainColor(color);
-                    if (grains[i+1][j - 1].isGrainColor()) grains[i+1][j - 1].changeGrainColor(color);
+                    if (grains[i][j + 1].isEmptyColorState()) grains[i][j + 1].changeGrainColor(color);
+                    if (grains[i - 1][j].isEmptyColorState()) grains[i - 1][j].changeGrainColor(color);
+                    if (grains[i + 1][j].isEmptyColorState()) grains[i + 1][j].changeGrainColor(color);
+                    if (grains[i][j - 1].isEmptyColorState()) grains[i][j - 1].changeGrainColor(color);
+                    if (grains[i-1][j + 1].isEmptyColorState()) grains[i-1][j + 1].changeGrainColor(color);
+                    if (grains[i+1][j + 1].isEmptyColorState()) grains[i+1][j + 1].changeGrainColor(color);
+                    if (grains[i-1][j - 1].isEmptyColorState()) grains[i-1][j - 1].changeGrainColor(color);
+                    if (grains[i+1][j - 1].isEmptyColorState()) grains[i+1][j - 1].changeGrainColor(color);
 
 
                 }
@@ -112,32 +164,32 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                if (!grains[i][j].isGrainColor()) {
+                if (!grains[i][j].isEmptyColorState()) {
                     continue;
 
                 }
                 else {
-                    if (!grains[i-1][j+1].isGrainColor())
+                    if (!grains[i-1][j+1].isEmptyColorState())
                         color = grains[i-1][j + 1].getColor();
-                    else if (!grains[i+1][j - 1].isGrainColor())
+                    else if (!grains[i+1][j - 1].isEmptyColorState())
                         color = grains[i+1][j - 1].getColor();
-                    else if (!grains[i][j + 1].isGrainColor())
+                    else if (!grains[i][j + 1].isEmptyColorState())
                         color = grains[i][j + 1].getColor();
-                    else if (!grains[i - 1][j].isGrainColor())
+                    else if (!grains[i - 1][j].isEmptyColorState())
                         color = grains[i - 1][j].getColor();
-                    else if (!grains[i + 1][j].isGrainColor())
+                    else if (!grains[i + 1][j].isEmptyColorState())
                         color = grains[i + 1][j].getColor();
-                    else if (!grains[i][j - 1].isGrainColor())
+                    else if (!grains[i][j - 1].isEmptyColorState())
                         color = grains[i][j - 1].getColor();
 
 
                     grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i - 1][j].isGrainColor()) grains[i - 1][j].changeGrainColor(color);
-                    if (grains[i + 1][j].isGrainColor()) grains[i + 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
-                    if (grains[i-1][j + 1].isGrainColor()) grains[i-1][j + 1].changeGrainColor(color);
-                    if (grains[i+1][j - 1].isGrainColor()) grains[i+1][j - 1].changeGrainColor(color);
+                    if (grains[i][j + 1].isEmptyColorState()) grains[i][j + 1].changeGrainColor(color);
+                    if (grains[i - 1][j].isEmptyColorState()) grains[i - 1][j].changeGrainColor(color);
+                    if (grains[i + 1][j].isEmptyColorState()) grains[i + 1][j].changeGrainColor(color);
+                    if (grains[i][j - 1].isEmptyColorState()) grains[i][j - 1].changeGrainColor(color);
+                    if (grains[i-1][j + 1].isEmptyColorState()) grains[i-1][j + 1].changeGrainColor(color);
+                    if (grains[i+1][j - 1].isEmptyColorState()) grains[i+1][j - 1].changeGrainColor(color);
 
 
                 }
@@ -153,33 +205,33 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                if (!grains[i][j].isGrainColor()) {
+                if (!grains[i][j].isEmptyColorState()) {
 
                     continue;
 
                 }
                 else {
-                    if (!grains[i+1][j + 1].isGrainColor())
+                    if (!grains[i+1][j + 1].isEmptyColorState())
                         color = grains[i+1][j + 1].getColor();
-                    else if (!grains[i-1][j - 1].isGrainColor())
+                    else if (!grains[i-1][j - 1].isEmptyColorState())
                         color = grains[i-1][j - 1].getColor();
-                    else if (!grains[i][j + 1].isGrainColor())
+                    else if (!grains[i][j + 1].isEmptyColorState())
                         color = grains[i][j + 1].getColor();
-                    else if (!grains[i - 1][j].isGrainColor())
+                    else if (!grains[i - 1][j].isEmptyColorState())
                         color = grains[i - 1][j].getColor();
-                    else if (!grains[i + 1][j].isGrainColor())
+                    else if (!grains[i + 1][j].isEmptyColorState())
                         color = grains[i + 1][j].getColor();
-                    else if (!grains[i][j - 1].isGrainColor())
+                    else if (!grains[i][j - 1].isEmptyColorState())
                         color = grains[i][j - 1].getColor();
 
 
                     grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i - 1][j].isGrainColor()) grains[i - 1][j].changeGrainColor(color);
-                    if (grains[i + 1][j].isGrainColor()) grains[i + 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
-                    if (grains[i+1][j + 1].isGrainColor()) grains[i+1][j + 1].changeGrainColor(color);
-                    if (grains[i-1][j - 1].isGrainColor()) grains[i-1][j - 1].changeGrainColor(color);
+                    if (grains[i][j + 1].isEmptyColorState()) grains[i][j + 1].changeGrainColor(color);
+                    if (grains[i - 1][j].isEmptyColorState()) grains[i - 1][j].changeGrainColor(color);
+                    if (grains[i + 1][j].isEmptyColorState()) grains[i + 1][j].changeGrainColor(color);
+                    if (grains[i][j - 1].isEmptyColorState()) grains[i][j - 1].changeGrainColor(color);
+                    if (grains[i+1][j + 1].isEmptyColorState()) grains[i+1][j + 1].changeGrainColor(color);
+                    if (grains[i-1][j - 1].isEmptyColorState()) grains[i-1][j - 1].changeGrainColor(color);
 
 
                 }
@@ -199,30 +251,30 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                if (!grains[i][j].isGrainColor()) {
+                if (!grains[i][j].isEmptyColorState()) {
 
                     continue;
 
                 }
                 else {
-                    if (!grains[i-1][j+1].isGrainColor())
+                    if (!grains[i-1][j+1].isEmptyColorState())
                         color = grains[i-1][j + 1].getColor();
-                    else if (!grains[i-1][j - 1].isGrainColor())
+                    else if (!grains[i-1][j - 1].isEmptyColorState())
                         color = grains[i-1][j - 1].getColor();
-                    else if (!grains[i][j + 1].isGrainColor())
+                    else if (!grains[i][j + 1].isEmptyColorState())
                         color = grains[i][j + 1].getColor();
-                    else if (!grains[i - 1][j].isGrainColor())
+                    else if (!grains[i - 1][j].isEmptyColorState())
                         color = grains[i - 1][j].getColor();
-                    else if (!grains[i][j - 1].isGrainColor())
+                    else if (!grains[i][j - 1].isEmptyColorState())
                         color = grains[i][j - 1].getColor();
 
 
                     grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i - 1][j].isGrainColor()) grains[i - 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
-                    if (grains[i-1][j + 1].isGrainColor()) grains[i-1][j + 1].changeGrainColor(color);
-                    if (grains[i-1][j - 1].isGrainColor()) grains[i-1][j - 1].changeGrainColor(color);
+                    if (grains[i][j + 1].isEmptyColorState()) grains[i][j + 1].changeGrainColor(color);
+                    if (grains[i - 1][j].isEmptyColorState()) grains[i - 1][j].changeGrainColor(color);
+                    if (grains[i][j - 1].isEmptyColorState()) grains[i][j - 1].changeGrainColor(color);
+                    if (grains[i-1][j + 1].isEmptyColorState()) grains[i-1][j + 1].changeGrainColor(color);
+                    if (grains[i-1][j - 1].isEmptyColorState()) grains[i-1][j - 1].changeGrainColor(color);
 
                 }
 
@@ -239,30 +291,30 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-                if (!grains[i][j].isGrainColor()) {
+                if (!grains[i][j].isEmptyColorState()) {
 
                     continue;
 
                 }
                 else {
-                    if (!grains[i+1][j + 1].isGrainColor())
+                    if (!grains[i+1][j + 1].isEmptyColorState())
                         color = grains[i+1][j + 1].getColor();
-                    else if (!grains[i+1][j - 1].isGrainColor())
+                    else if (!grains[i+1][j - 1].isEmptyColorState())
                         color = grains[i+1][j - 1].getColor();
-                    else if (!grains[i][j + 1].isGrainColor())
+                    else if (!grains[i][j + 1].isEmptyColorState())
                         color = grains[i][j + 1].getColor();
-                    else if (!grains[i + 1][j].isGrainColor())
+                    else if (!grains[i + 1][j].isEmptyColorState())
                         color = grains[i + 1][j].getColor();
-                    else if (!grains[i][j - 1].isGrainColor())
+                    else if (!grains[i][j - 1].isEmptyColorState())
                         color = grains[i][j - 1].getColor();
 
 
                     grains[i][j].changeGrainColor(color);
-                    if (grains[i][j + 1].isGrainColor()) grains[i][j + 1].changeGrainColor(color);
-                    if (grains[i + 1][j].isGrainColor()) grains[i + 1][j].changeGrainColor(color);
-                    if (grains[i][j - 1].isGrainColor()) grains[i][j - 1].changeGrainColor(color);
-                    if (grains[i+1][j + 1].isGrainColor()) grains[i+1][j + 1].changeGrainColor(color);
-                    if (grains[i+1][j - 1].isGrainColor()) grains[i+1][j - 1].changeGrainColor(color);
+                    if (grains[i][j + 1].isEmptyColorState()) grains[i][j + 1].changeGrainColor(color);
+                    if (grains[i + 1][j].isEmptyColorState()) grains[i + 1][j].changeGrainColor(color);
+                    if (grains[i][j - 1].isEmptyColorState()) grains[i][j - 1].changeGrainColor(color);
+                    if (grains[i+1][j + 1].isEmptyColorState()) grains[i+1][j + 1].changeGrainColor(color);
+                    if (grains[i+1][j - 1].isEmptyColorState()) grains[i+1][j - 1].changeGrainColor(color);
 
 
                 }

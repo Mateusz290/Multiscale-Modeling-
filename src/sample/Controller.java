@@ -77,7 +77,12 @@ public class Controller {
 
             for (int i=0;i<count; i++) {
                 for (int j=0; j<count; j++) {
+<<<<<<< HEAD
                     output.getChildren().add(Main.colorPixelsAfterChange(i, j));
+=======
+                    output.getChildren().add(colorPixelsAfterChange(i, j));
+
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                 }
             }
 
@@ -89,6 +94,7 @@ public class Controller {
 
     }
 
+<<<<<<< HEAD
     public void reverseAction() {
         output.getChildren().clear();
 
@@ -102,21 +108,25 @@ public class Controller {
     }
 
     public void useAlgorithm() {
+=======
+    public void useAlgorithm() throws InterruptedException {
+>>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
         System.out.println("Algorithm");
         System.out.println(comboBox.getValue());
 
-        output.getChildren().clear();
+//        output.getChildren().clear();
 
 //        Main.changeGrainColor(count, 5);
 
-        Main.changeGrainColorByAlgorithm(comboBox.getValue(),count,comboBox2.getValue());
+        Main.changeGrainColorByAlgorithm(comboBox.getValue(),count,comboBox2.getValue(), output);
 
 
-        for (int i=1;i< count - 1; i++) {
-            for (int j=1; j<count -1 ; j++) {
-                output.getChildren().add(colorPixelsAfterChange(i, j));
+       for (int i=0;i< count; i++) {
+            for (int j = 0; j < count; j++) {
+                output.getChildren().add(Main.colorPixelsAfterChange(i, j));
             }
         }
+
     }
 
     public void saveImage() {
