@@ -204,6 +204,25 @@ public class Controller {
 
     }
 
+
+    @FXML
+    private void handlePeriodic() {
+        switch (comboBox2.getValue()) {
+            case "Periodic":
+                this.conditions=true;
+                break;
+            case "NonPeriodic":
+                this.conditions=false;
+                break;
+        }
+    }
+
+    @FXML
+    private void handleSeedCount(){
+        seedCount=Integer.parseInt(inputSeedVal.getText());
+    }
+
+
     @FXML
     private void generateInclusions() {
 
@@ -228,23 +247,6 @@ public class Controller {
 
 
 
-    }
-
-    @FXML
-    private void handlePeriodic() {
-        switch (comboBox2.getValue()) {
-            case "Periodic":
-                this.conditions=true;
-                break;
-            case "NonPeriodic":
-                this.conditions=false;
-                break;
-        }
-    }
-
-    @FXML
-    private void handleSeedCount(){
-        seedCount=Integer.parseInt(inputSeedVal.getText());
     }
 
 
