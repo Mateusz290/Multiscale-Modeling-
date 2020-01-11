@@ -11,6 +11,8 @@ import javafx.util.Duration;
 import sample.model.Grain;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class Algorithm2 {
@@ -136,6 +138,381 @@ public class Algorithm2 {
 
 
     }
+
+
+    public void algorithmCurvatureStillByOneStep(int propabilities) {
+
+
+        algorithmCurvature(propabilities);
+
+    }
+
+
+    public void algorithmCurvature(int propabilities){
+
+        int max=0;
+        int pom=0;
+        Paint newColor=null;
+
+        Random random = new Random();
+
+        int n;
+
+        Map<Paint, Integer> colorGrains = new HashMap();
+
+
+        for (Paint paint: alive) {
+            colorGrains.put(paint, 0);
+        }
+
+        sample.Grain[][] prevGrains = new sample.Grain[x][y];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                sample.Grain f = grains[i][j];
+                prevGrains[i][j] = new sample.Grain(f.getX(), f.getPhase(), f.getY(), f.getGrainColor());
+            }
+        }
+
+        for (int i = 1; i < x-1; i++) {
+            for (int j = 1; j < y-1; j++) {
+                for (Paint paint : alive) {
+                    colorGrains.put(paint, 0);
+                }
+                max = 0;
+                if (prevGrains[i][j].isGrayColor()) {
+
+                    if (i == 0 || i == x - 1 || j == 0 || j == y - 1) {
+                        if (controller.conditions) {
+                            if (i == 0) {
+                                if (j == 0) {
+
+
+                                } else if (j == y - 1) {
+
+
+
+
+                                } else {
+
+
+
+                                }
+
+                            } else if (i == x - 1) {
+                                if (j == 0) {
+
+
+
+                                } else if (j == y - 1) {
+
+
+
+
+
+                                } else {
+
+
+
+
+                                }
+
+                            } else if (j == 0) {
+
+
+
+
+                            } else if (j == y - 1) {
+
+
+
+                            }
+
+
+                        } else {
+                            if (i == 0) {
+                                if (j == 0) {
+
+
+
+                                } else if (j == y - 1) {
+
+
+
+                                } else {
+
+
+
+                                }
+
+                            } else if (i == x - 1) {
+                                if (j == 0) {
+
+
+
+
+
+                                } else if (j == y - 1) {
+
+
+
+
+                                } else {
+
+
+
+                                }
+
+
+                            }
+
+                        }
+                    } else {
+
+                        // I Rule
+                        if (!prevGrains[i - 1][j - 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i - 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i - 1][j - 1].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i - 1][j].isGrayColor()) {
+                            colorGrains.put(prevGrains[i - 1][j].getGrainColor(), colorGrains.get(prevGrains[i - 1][j].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i - 1][j].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i - 1][j].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i - 1][j + 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i - 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i - 1][j + 1].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i][j - 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i][j - 1].getGrainColor(), colorGrains.get(prevGrains[i][j - 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i][j - 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i][j - 1].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i][j + 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i][j + 1].getGrainColor(), colorGrains.get(prevGrains[i][j + 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i][j + 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i][j + 1].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i + 1][j - 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i + 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i + 1][j - 1].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i + 1][j].isGrayColor()) {
+                            colorGrains.put(prevGrains[i + 1][j].getGrainColor(), colorGrains.get(prevGrains[i + 1][j].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i + 1][j].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i + 1][j].getGrainColor();
+                            }
+                        }
+                        if (!prevGrains[i + 1][j + 1].isGrayColor()) {
+                            colorGrains.put(prevGrains[i + 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor()) + 1);
+                            pom = colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor());
+                            if (max < pom) {
+                                max = pom;
+                                newColor = prevGrains[i + 1][j + 1].getGrainColor();
+                            }
+                        }
+
+                        if (max >= 5) {
+                            System.out.println("Rule 1 spelnione!");
+                            grains[i][j].changeGrainColor(newColor);
+
+
+                        } else {
+
+                            // II rule
+                            for (Paint paint : alive) {
+                                colorGrains.put(paint, 0);
+                            }
+                            max = 0;
+
+
+                            if (!prevGrains[i - 1][j].isGrayColor()) {
+                                colorGrains.put(prevGrains[i - 1][j].getGrainColor(), colorGrains.get(prevGrains[i - 1][j].getGrainColor()) + 1);
+                                pom = colorGrains.get(prevGrains[i - 1][j].getGrainColor());
+                                if (max < pom) {
+                                    max = pom;
+                                    newColor = prevGrains[i - 1][j].getGrainColor();
+                                }
+                            }
+
+                            if (!prevGrains[i][j - 1].isGrayColor()) {
+                                colorGrains.put(prevGrains[i][j - 1].getGrainColor(), colorGrains.get(prevGrains[i][j - 1].getGrainColor()) + 1);
+                                pom = colorGrains.get(prevGrains[i][j - 1].getGrainColor());
+                                if (max < pom) {
+                                    max = pom;
+                                    newColor = prevGrains[i][j - 1].getGrainColor();
+                                }
+                            }
+
+                            if (!prevGrains[i][j + 1].isGrayColor()) {
+                                colorGrains.put(prevGrains[i][j + 1].getGrainColor(), colorGrains.get(prevGrains[i][j + 1].getGrainColor()) + 1);
+                                pom = colorGrains.get(prevGrains[i][j + 1].getGrainColor());
+                                if (max < pom) {
+                                    max = pom;
+                                    newColor = prevGrains[i][j + 1].getGrainColor();
+                                }
+                            }
+
+                            if (!prevGrains[i + 1][j].isGrayColor()) {
+                                colorGrains.put(prevGrains[i + 1][j].getGrainColor(), colorGrains.get(prevGrains[i + 1][j].getGrainColor()) + 1);
+                                pom = colorGrains.get(prevGrains[i + 1][j].getGrainColor());
+                                if (max < pom) {
+                                    max = pom;
+                                    newColor = prevGrains[i + 1][j].getGrainColor();
+                                }
+                            }
+
+                            if (max>=3) {
+                                System.out.println("Rule 2 spelnione!");
+                                grains[i][j].changeGrainColor(newColor);
+
+                            } else {
+
+                                // III rule
+
+                                System.out.println();
+                                for (Paint paint : alive) {
+                                    colorGrains.put(paint, 0);
+                                }
+                                max = 0;
+
+
+                                if (!prevGrains[i - 1][j - 1].isGrayColor()) {
+                                    colorGrains.put(prevGrains[i - 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor()) + 1);
+                                    pom = colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor());
+                                    if (max < pom) {
+                                        max = pom;
+                                        newColor = prevGrains[i - 1][j - 1].getGrainColor();
+                                    }
+                                }
+
+                                if (!prevGrains[i - 1][j + 1].isGrayColor()) {
+                                    colorGrains.put(prevGrains[i - 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor()) + 1);
+                                    pom = colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor());
+                                    if (max < pom) {
+                                        max = pom;
+                                        newColor = prevGrains[i - 1][j + 1].getGrainColor();
+                                    }
+                                }
+
+                                if (!prevGrains[i + 1][j - 1].isGrayColor()) {
+                                    colorGrains.put(prevGrains[i + 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor()) + 1);
+                                    pom = colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor());
+                                    if (max < pom) {
+                                        max = pom;
+                                        newColor = prevGrains[i + 1][j - 1].getGrainColor();
+                                    }
+                                }
+
+                                if (!prevGrains[i + 1][j + 1].isGrayColor()) {
+                                    colorGrains.put(prevGrains[i + 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor()) + 1);
+                                    pom = colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor());
+                                    if (max < pom) {
+                                        max = pom;
+                                        newColor = prevGrains[i + 1][j + 1].getGrainColor();
+                                    }
+                                }
+
+                                if (max >= 3) {
+                                    System.out.println("Rule 3 spelnione!");
+                                    grains[i][j].changeGrainColor(newColor);
+                                } else {
+
+
+                                    // Rule IV
+                                    n = random.nextInt(100);
+
+                                    for (Paint paint : alive) {
+                                        colorGrains.put(paint, 0);
+                                    }
+                                    max = 0;
+
+                                    if (!prevGrains[i - 1][j - 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i - 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i - 1][j - 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i - 1][j].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i - 1][j].getGrainColor(), colorGrains.get(prevGrains[i - 1][j].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i - 1][j].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i - 1][j + 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i - 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i - 1][j + 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i][j - 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i][j - 1].getGrainColor(), colorGrains.get(prevGrains[i][j - 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i][j - 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i][j + 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i][j + 1].getGrainColor(), colorGrains.get(prevGrains[i][j + 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i][j + 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i + 1][j - 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i + 1][j - 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i + 1][j - 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i + 1][j].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i + 1][j].getGrainColor(), colorGrains.get(prevGrains[i + 1][j].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i + 1][j].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+                                    if (!prevGrains[i + 1][j + 1].isGrayColor()) {
+                                        colorGrains.put(prevGrains[i + 1][j + 1].getGrainColor(), colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor()) + 1);
+                                        pom = colorGrains.get(prevGrains[i + 1][j + 1].getGrainColor());
+                                        if (max < pom) max = pom;
+                                    }
+
+                                    if (n < propabilities) {
+                                        for (Map.Entry<Paint, Integer> entry : colorGrains.entrySet()) {
+                                            if (entry.getValue() != 0) {
+                                                grains[i][j].changeGrainColor(entry.getKey());
+                                                break;
+                                            }
+
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        checkAlive();
+
+
+    }
+
 
 
     public static void Moorea(Grain grains[][],int count,String boundary) {
