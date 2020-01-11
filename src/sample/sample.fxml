@@ -9,30 +9,40 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <ScrollPane hbarPolicy="NEVER" prefHeight="710.0" prefWidth="744.0" vbarPolicy="NEVER">
+        <ScrollPane hbarPolicy="NEVER" layoutX="40.0" prefHeight="710.0" prefWidth="704.0" vbarPolicy="NEVER">
             <content>
                 <AnchorPane fx:id="output" minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="352.0" />
             </content>
         </ScrollPane>
-        <TextField layoutX="825.0" layoutY="95.0" prefHeight="25.0" prefWidth="204.0" text="Neighbourhood" />
-        <Button fx:id="button" layoutX="825.0" layoutY="32.0" mnemonicParsing="false" onAction="#createImage" prefHeight="37.0" prefWidth="169.0" text="Create Basic dimension" />
-        <Button layoutX="855.0" layoutY="362.0" mnemonicParsing="false" onAction="#painGrains" prefHeight="25.0" prefWidth="169.0" text="Random colorate" />
-        <TextField fx:id="grainCount" layoutX="870.0" layoutY="421.0" prefHeight="25.0" prefWidth="159.0" promptText="Number of grains" />
-        <TextField layoutX="825.0" layoutY="204.0" prefHeight="25.0" prefWidth="188.0" text="Boundary Condition" />
-        <Button layoutX="838.0" layoutY="475.0" mnemonicParsing="false" onAction="#saveImage" prefHeight="79.0" prefWidth="204.0" text="Save image" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-<<<<<<< HEAD
-      <TextField fx:id="textField" layoutX="267.0" layoutY="669.0" prefHeight="25.0" prefWidth="188.0" promptText="Size of square matrix" />
-      <Button fx:id="algorithm" layoutX="493.0" layoutY="642.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
-      <ComboBox fx:id="comboBox" layoutX="13.0" layoutY="505.0" prefHeight="25.0" prefWidth="204.0" />
-      <ComboBox fx:id="comboBox2" layoutX="267.0" layoutY="505.0" prefHeight="25.0" prefWidth="188.0" />
-      <Button layoutX="667.0" layoutY="468.0" mnemonicParsing="false" onAction="#reverseAction" prefHeight="25.0" prefWidth="53.0" text="Reset" />
-=======
-      <TextField fx:id="textField" layoutX="874.0" layoutY="595.0" prefHeight="25.0" prefWidth="188.0" promptText="Size of square matrix" />
-      <Button fx:id="algorithm" layoutX="836.0" layoutY="669.0" mnemonicParsing="false" onAction="#useAlgorithm" prefHeight="79.0" prefWidth="227.0" text="Algorithm" />
-      <ComboBox fx:id="comboBox" layoutX="825.0" layoutY="140.0" prefHeight="25.0" prefWidth="204.0" />
-      <ComboBox fx:id="comboBox2" layoutX="825.0" layoutY="261.0" prefHeight="25.0" prefWidth="188.0" />
-      <Button layoutX="968.0" layoutY="311.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Reset" />
->>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
+        <TextField layoutX="744.0" layoutY="200.0" prefHeight="25.0" prefWidth="131.0" text="Neighbourhood" />
+        <Button fx:id="button" layoutX="745.0" layoutY="33.0" mnemonicParsing="false" onAction="#handleGenerate" prefHeight="25.0" prefWidth="345.0" text="Create Basic dimension/Reset" />
+        <Button layoutX="744.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleSpawn" prefHeight="25.0" prefWidth="344.0" text="Random colorate" />
+        <TextField fx:id="inputSeedVal" layoutX="744.0" layoutY="144.0" onAction="#handleSeedCount" prefHeight="25.0" prefWidth="141.0" promptText="Number of grains" />
+        <TextField layoutX="744.0" layoutY="225.0" prefHeight="25.0" prefWidth="131.0" text="Boundary Condition" />
+        <Button layoutX="744.0" layoutY="316.0" mnemonicParsing="false" onAction="#saveAsPng" prefHeight="25.0" prefWidth="344.0" text="Save image" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+        <TextField fx:id="inputSize" layoutX="744.0" layoutY="2.0" prefHeight="17.0" prefWidth="141.0" promptText="Size of square matrix" />
+        <Button layoutX="745.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleGoPause" prefHeight="25.0" prefWidth="150.0" text="Algorithm" />
+        <ComboBox fx:id="comboBox" layoutX="930.0" layoutY="200.0" onAction="#handleOperation" prefHeight="25.0" prefWidth="127.0" />
+        <ComboBox fx:id="comboBox2" layoutX="930.0" layoutY="225.0" onAction="#handlePeriodic" prefHeight="25.0" prefWidth="127.0" />
+        <TextField fx:id="stepsVal" layoutX="744.0" layoutY="256.0" prefHeight="25.0" prefWidth="227.0" promptText="Count of steps" />
+        <Button layoutX="745.0" layoutY="113.0" mnemonicParsing="false" onAction="#generateInclusions" prefHeight="25.0" prefWidth="344.0" text="Add inclusions" />
+        <TextField fx:id="minRadiusOfInclusions" layoutX="932.0" layoutY="58.0" prefHeight="25.0" prefWidth="141.0" promptText="Min radius of inclusions" />
+        <TextField fx:id="maxRadiusOfInclusions" layoutX="932.0" layoutY="88.0" prefHeight="25.0" prefWidth="141.0" promptText="Max radius of inclusions" />
+        <TextField fx:id="numberInclusion" layoutX="744.0" layoutY="58.0" prefHeight="25.0" prefWidth="141.0" promptText="Number of inclusions" />
+        <Button layoutX="751.0" layoutY="343.0" mnemonicParsing="false" onAction="#importImage" prefHeight="25.0" prefWidth="336.0" text="Import image" />
+        <TextField layoutX="745.0" layoutY="375.0" promptText=" Grain Boundary Curvature " />
+        <ComboBox fx:id="grainCurvatureBox" layoutX="919.0" layoutY="375.0" onAction="#curvatureConditions" prefWidth="150.0" />
+        <TextField fx:id="probabilityRule4" layoutX="746.0" layoutY="408.0" promptText="Probability for Rule4" />
+        <Button fx:id="algorithmGrainCurvationButton" layoutX="918.0" layoutY="408.0" mnemonicParsing="false" onAction="#algorithmCurvature" prefHeight="25.0" prefWidth="150.0" text="Algorithm Grain Curvature" />
+        <Button layoutX="994.0" layoutY="256.0" mnemonicParsing="false" onAction="#pauseRun" prefHeight="25.0" prefWidth="81.0" text="Pause" />
+        <Button fx:id="deleteGrainsButton" layoutX="905.0" layoutY="2.0" mnemonicParsing="false" onAction="#deleteSubstructure" text="Delete unnecessary grains" />
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+        <Button fx:id="algorithmSubstractureButton" layoutX="747.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleGoPauseSubtractures" prefHeight="25.0" prefWidth="149.0" text="Algorithm Subtractures" />
+        <ComboBox fx:id="comboBox3" layoutX="932.0" layoutY="479.0" prefWidth="150.0" />
+        <Button layoutX="919.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleGoPauseByStep" prefHeight="25.0" prefWidth="141.0" text="By count of steps" />
+        <Button layoutX="743.0" layoutY="520.0" mnemonicParsing="false" onAction="#createListViewForGrains" prefHeight="25.0" prefWidth="344.0" text="List of grains to delete" />
+        <TextField layoutX="751.0" layoutY="479.0" text="DP Structure" />
+        <Button fx:id="algorithmSubstractureButtonByOneStep" layoutX="919.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleGoPauseSubtracturesByOneStep" prefHeight="25.0" prefWidth="154.0" text="By one step" />
     </children>
 </AnchorPane>

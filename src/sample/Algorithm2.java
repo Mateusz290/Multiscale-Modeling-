@@ -20,40 +20,14 @@ public class Algorithm2 {
 
         for (int i=1;i<count - 1; i++){
             for (int j=1;j<count - 1; j++) {
-<<<<<<< HEAD
-                grainId = -1;
-                System.out.println("Pozycja [" + i + "][" + j + " ]" + " - granID = " + grains[i][j].getGrainId());
-                if (!grains[i][j].isGrainColor()) {
-                            System.out.println("Opuszczam");
-=======
                 color = Color.GRAY;
                 grainId = -1;
                 if (!grains[i][j].isEmptyColorState()) {
                     System.out.println("Opuszczam");
->>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                     continue;
 
                 }
                 else {
-<<<<<<< HEAD
-                    if (!grains[i][j + 1].isGrainColor() && grains[i][j + 1].getGrainId() > grainId ) {
-                        color = grains[i][j + 1].getColor();
-                        grainId = grains[i][j + 1].getGrainId();
-                    }
-                    if (!grains[i - 1][j].isGrainColor() && grains[i - 1][j].getGrainId() > grainId) {
-                        color = grains[i - 1][j].getColor();
-                        grainId = grains[i-1][j].getGrainId();
-                     }
-                     if (!grains[i + 1][j].isGrainColor() && grains[i + 1][j].getGrainId() > grainId) {
-                        color = grains[i + 1][j].getColor();
-                        grainId = grains[i+1][j].getGrainId();
-
-                     }
-                    if (!grains[i][j - 1].isGrainColor() && grains[i][j-1].getGrainId() > grainId) {
-                        color = grains[i][j - 1].getColor();
-                        grainId = grains[i][j-1].getGrainId();
-
-=======
                     if (!grains[i-1][j].isEmptyColorState() && grains[i-1][j].getGrainId() > grainId) {
                         color = grains[i-1][j].getColor();
                         grainId = grains[i-1][j].getGrainId();
@@ -69,7 +43,6 @@ public class Algorithm2 {
                     if (!grains[i+1][j].isEmptyColorState()  && grains[i][j - 1].getGrainId() > grainId) {
                         color = grains[i+1][j].getColor();
                         grainId = grains[i+1][j].getGrainId();
->>>>>>> 770c5cb709b6433cbfd332d8b7f63031cca942b8
                     }
 
                     if (color != Color.GRAY) {
