@@ -204,25 +204,6 @@ public class Controller {
 
     }
 
-
-    @FXML
-    private void handlePeriodic() {
-        switch (comboBox2.getValue()) {
-            case "Periodic":
-                this.conditions=true;
-                break;
-            case "NonPeriodic":
-                this.conditions=false;
-                break;
-        }
-    }
-
-    @FXML
-    private void handleSeedCount(){
-        seedCount=Integer.parseInt(inputSeedVal.getText());
-    }
-
-
     @FXML
     private void generateInclusions() {
 
@@ -247,6 +228,23 @@ public class Controller {
 
 
 
+    }
+
+    @FXML
+    private void handlePeriodic() {
+        switch (comboBox2.getValue()) {
+            case "Periodic":
+                this.conditions=true;
+                break;
+            case "NonPeriodic":
+                this.conditions=false;
+                break;
+        }
+    }
+
+    @FXML
+    private void handleSeedCount(){
+        seedCount=Integer.parseInt(inputSeedVal.getText());
     }
 
 
@@ -366,6 +364,66 @@ public class Controller {
     }
 
     @FXML
+    private void drawGrainsBoundaries(){
+        System.out.println("drawGraingBoundaries");
+
+
+        int length= algorithm.generateWithBoundaries();
+
+        System.out.println("Dlugosc granicy: = " + length);
+
+
+    }
+
+    @FXML
+    private void getGrainsSize(){
+        System.out.println("getGrainsSize");
+        PrintWriter fileWriter1 = null;
+
+        File grainsSize = new File("GrainsSize.txt");
+
+
+        try {
+            fileWriter1 = new PrintWriter(grainsSize);
+
+            algorithm.saveToGrainSizeToFile(fileWriter1, algorithm.getGrainsSize());
+
+        } catch (IOException e) {
+            System.out.println("Blad przy zapisie do pliku!");
+        } finally {
+            if (fileWriter1 != null) {
+                fileWriter1.close();
+            }
+
+        }
+
+    }
+
+    @FXML
+    private void getGrainsSizeTotal(){
+        PrintWriter fileWriter1 = null;
+        File grainsMediumSize = new File("GrainsMediumSize.txt");
+
+
+        try {
+            fileWriter1 = new PrintWriter(grainsMediumSize);
+
+            algorithm.saveToMediumGrainSizeToFile(fileWriter1, algorithm.getGrainsMediumSize());
+
+        } catch (IOException e) {
+            System.out.println("Blad przy zapisie do pliku!");
+        } finally {
+            if (fileWriter1 != null) {
+                fileWriter1.close();
+            }
+
+        }
+
+        System.out.println("getGrainsSizeTotal");
+
+    }
+
+    @FXML
     public void saveAsPng() {
         WritableImage image = output.snapshot(new SnapshotParameters(), null);
 
@@ -400,9 +458,6 @@ public class Controller {
     @FXML
     public void importImage() throws FileNotFoundException {
         System.out.println("Import pliku");
-
-
-
 
         algorithm.importFile();
         output.getChildren().clear();

@@ -44,5 +44,8 @@
         <Button layoutX="743.0" layoutY="520.0" mnemonicParsing="false" onAction="#createListViewForGrains" prefHeight="25.0" prefWidth="344.0" text="List of grains to delete" />
         <TextField layoutX="751.0" layoutY="479.0" text="DP Structure" />
         <Button fx:id="algorithmSubstractureButtonByOneStep" layoutX="919.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleGoPauseSubtracturesByOneStep" prefHeight="25.0" prefWidth="154.0" text="By one step" />
+        <Button layoutX="743.0" layoutY="562.0" mnemonicParsing="false" onAction="#drawGrainsBoundaries" prefHeight="25.0" prefWidth="344.0" text="Grains with boundaries" />
+        <Button layoutX="744.0" layoutY="607.0" mnemonicParsing="false" onAction="#getGrainsSize" prefHeight="25.0" prefWidth="141.0" text="Grain Length/Export" />
+        <Button layoutX="910.0" layoutY="607.0" mnemonicParsing="false" onAction="#getGrainsSizeTotal" prefHeight="25.0" prefWidth="179.0" text="Grain Average Length/Export" />
     </children>
 </AnchorPane>
